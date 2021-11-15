@@ -36,7 +36,7 @@ public class FireStoreViewModel {
             "email": "",
             "first_name": "",
             "last_name": "",
-            "notification_token": AppDelegate.shared.fcmPushToken ?? "",
+//            "notification_token": AppDelegate.shared.fcmPushToken ?? "",
             "phone_no": phoneNumber ?? "",
             
         ]) { err in
