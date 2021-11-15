@@ -21,6 +21,7 @@ public class FireStoreViewModel {
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     
     public init() {
+        
     }
     
     func storeNewUserDataFirestore() {
