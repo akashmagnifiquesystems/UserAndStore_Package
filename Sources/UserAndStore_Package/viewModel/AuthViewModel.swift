@@ -22,7 +22,7 @@ public struct AuthStatus {
     public init() {}
 }
 
-public class AuthViewModel {
+public class AuthViewModel : ObservableObject, Identifiable {
     let id = UUID()
     
     public var status = AuthStatus()
