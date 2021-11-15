@@ -11,13 +11,13 @@ import FirebaseFirestore
 import FirebaseDatabase
 
 public struct AuthStatus {
-    var isLoggedIn = false
-    var isReceivedCode = false
-    var isVerifySuccess = false
-    var isSignedOut = false
-    var isLoading = false
-    var isError = false
-    var error = ""
+    public var isLoggedIn = false
+    public var isReceivedCode = false
+    public var isVerifySuccess = false
+    public var isSignedOut = false
+    public var isLoading = false
+    public var isError = false
+    public var error = ""
 }
 
 public class AuthViewModel {
