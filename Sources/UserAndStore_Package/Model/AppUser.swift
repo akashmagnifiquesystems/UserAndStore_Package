@@ -7,14 +7,14 @@
 
 import Defaults
 
-struct AppUser : Codable, Defaults.Serializable {
-    static let idKey = \AppUser.verificationId
-    var verificationId : String?
-    var uid: String?
-    var email: String?
-    var firstName: String?
-    var lastName: String?
-    var phoneNumber : String?
+public struct AppUser : Codable, Defaults.Serializable {
+    public static let idKey = \AppUser.verificationId
+    public var verificationId : String?
+    public var uid: String?
+    public var email: String?
+    public var firstName: String?
+    public var lastName: String?
+    public var phoneNumber : String?
 }
 
 extension Defaults.Keys {

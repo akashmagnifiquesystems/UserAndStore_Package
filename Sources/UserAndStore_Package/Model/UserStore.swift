@@ -6,24 +6,24 @@
 //
 import Defaults
 
-class UserStore {
-    static let shared = UserStore()
+public class UserStore {
+    public static let shared = UserStore()
     
-    func addUser() {
+    public func addUser() {
         let user = AppUser()
         Defaults[.user] = user
     }
     
-    func verifiedUser(verificationId: String) {
+    public func verifiedUser(verificationId: String) {
         Defaults[.user].verificationId = verificationId
     }
     
-    func verificationId() -> String? {
+    public func verificationId() -> String? {
         return Defaults[.user].verificationId
     }
     
     
-    func removeUser() {
+    public func removeUser() {
         Defaults[.user] = AppUser(verificationId: "", uid: "", email: "", firstName: "", lastName: "", phoneNumber: "")
     }
 }

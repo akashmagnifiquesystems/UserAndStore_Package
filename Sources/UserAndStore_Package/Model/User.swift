@@ -7,37 +7,37 @@
 
 import Foundation
 
-struct LiveStreamerKeysInfo {
-    var livestreamStreamKey: String
-    var livestreamId : String
-    var provider : String
-    var providerBroadcastBaseUrl : String
-    var providerPlaybackBaseUrl : String
-    var livestreamPlaybackId : String
+public struct LiveStreamerKeysInfo {
+    public var livestreamStreamKey: String
+    public var livestreamId : String
+    public var provider : String
+    public var providerBroadcastBaseUrl : String
+    public var providerPlaybackBaseUrl : String
+    public var livestreamPlaybackId : String
 }
 
-struct UserStoresInfo {
-    var storesManaged : [String]
-    var storesOwned : [String]
+public struct UserStoresInfo {
+    public var storesManaged : [String]
+    public var storesOwned : [String]
 }
 
-struct User {
-    var version : String
-    var paymentMethods : [String]
-    var isDemoUser : Bool
-    var orders : [String]
-    var userEmail: String
-    var userUUID : String
-    var avatarThumbnailFileName : String
-    var livestreamerkeysInfo : LiveStreamerKeysInfo
-    var userAddresses : [String]
-    var avatarName : String
-    var userBio : String
-    var lastName : String
-    var firstName : String
-    var registrationStatus : Bool
-    var userStoresInfo : UserStoresInfo
-    var avatarThumbnailUrl : String
-    var userName : String
-    var mobileNumber : String
+public struct User {
+    public var version : String
+    public var paymentMethods : [String]
+    public var isDemoUser : Bool
+    public var orders : [String]
+    public var userEmail: String
+    public var userUUID : String
+    public var avatarThumbnailFileName : String
+    public var livestreamerkeysInfo : LiveStreamerKeysInfo
+    public var userAddresses : [String]
+    public var avatarName : String
+    public var userBio : String
+    public var lastName : String
+    public var firstName : String
+    public var registrationStatus : Bool
+    public var userStoresInfo : UserStoresInfo
+    public var avatarThumbnailUrl : String
+    public var userName : String
+    public var mobileNumber : String
 }

@@ -24,7 +24,7 @@ public class FireStoreViewModel {
         
     }
     
-    func storeNewUserDataFirestore() {
+    public func storeNewUserDataFirestore() {
         var ref: DocumentReference? = nil
         ref = self.db.collection("user").addDocument(data: [
             "app_version": appVersion ?? "",
@@ -36,7 +36,7 @@ public class FireStoreViewModel {
             "email": "",
             "first_name": "",
             "last_name": "",
-//            "notification_token": AppDelegate.shared.fcmPushToken ?? "",
+            "notification_token": AppDelegate.shared.fcmPushToken ?? "",
             "phone_no": phoneNumber ?? "",
             
         ]) { err in
@@ -49,14 +49,14 @@ public class FireStoreViewModel {
         }
     }
     
-    func modelIdentifier() -> String {
+    public func modelIdentifier() -> String {
         if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] { return simulatorModelIdentifier }
         var sysinfo = utsname()
         uname(&sysinfo) // ignore return value
         return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
     }
     
-    func uploadProfilePic(image: UIImage, name: String, filePath: String) {
+    public func uploadProfilePic(image: UIImage, name: String, filePath: String) {
         guard let imageData: Data = image.jpegData(compressionQuality: 0.1) else {
             return
         }
@@ -75,10 +75,16 @@ public class FireStoreViewModel {
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
                 print(url?.absoluteString ?? "") // <- Download URL
                 self.userDefaults.saveToUserDefault(value: url!.absoluteString, Key: profilePicURL)
-//                NotificationCenter.default.post(name: NSNotification.profileUpdate,
-//                                                object: nil, userInfo: nil)
+                NotificationCenter.default.post(name: NSNotification.profileUpdate,
+                                                object: nil, userInfo: nil)
             })
         }
     }
+    
+}
+extension NSNotification {
+    public static let profileUpdate = Notification.Name.init("profileUpdate")
+    public static let inventoryUpdate = Notification.Name.init("inventoryUpdate")
+    public static let scheduleInstanStream = Notification.Name.init("scheduleInstanStream")
     
 }
