@@ -18,6 +18,8 @@ public struct AuthStatus {
     public var isLoading = false
     public var isError = false
     public var error = ""
+    
+    public init() {}
 }
 
 public class AuthViewModel {
