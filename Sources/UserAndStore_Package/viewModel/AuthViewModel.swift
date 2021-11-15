@@ -34,7 +34,7 @@ public class AuthViewModel {
     
     public var userDefaultsViewModel = UserDefaultsConstants()
     
-    init() {
+    public init() {
         if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
             self.countryCode = "+" + Constants.countryDictionary[countryCode]!
         }
