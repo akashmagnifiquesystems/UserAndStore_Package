@@ -165,4 +165,11 @@ public struct UserAndStore_Package {
             break
         }
     }
+    
+    public func updateProdQTY(id : String, QTY: String)
+    {
+        LocalStoreViewModel.shared.updateProduct(autoId: id,
+                                           id: (UserDefaultsStandard.shared.fetchFromDefaults(Key: firestoreUniqueID) as! String),
+                                           productQTY: QTY)
+    }
 }
