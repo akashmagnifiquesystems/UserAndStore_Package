@@ -8,6 +8,7 @@ public struct UserAndStore_Package {
     public init() {
     }
     //MARK:-////User Module/////////////////////////
+    
     //MARK:- Create user in firebase and store data to firestore
     public func createUserWithDataStore(fcmPushToken : String, phoneNumber: String)
     {
@@ -76,5 +77,10 @@ public struct UserAndStore_Package {
     }
     
     //MARK:-////Store Module/////////////////////////
-
+    
+    //MARK:- Insert Store details
+    public func insertStoreDetailsToLocalStorage(id:String, storeName:String, storeYourRole:String, storeTxtId:String, storeAddressLine1:String, storeAddressLine2:String, storeCityAddress:String ,storeStateAddress:String, storeZipcodeAddress:String, storeLicenseNumber:String)
+    {
+        LocalStoreViewModel.shared.insertStoreDetails(id: id, storeName: storeName, storeYourRole: storeYourRole, storeTxtId: storeTxtId, storeAddressLine1: storeAddressLine1, storeAddressLine2: storeAddressLine2, storeCityAddress: storeCityAddress, storeStateAddress: storeStateAddress, storeZipcodeAddress: storeZipcodeAddress, storeLicenseNumber: storeLicenseNumber)
+    }
 }
