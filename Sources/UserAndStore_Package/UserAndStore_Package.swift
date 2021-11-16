@@ -26,7 +26,6 @@ public struct UserAndStore_Package {
                                                   avtarname: avtarname,
                                                   email: email,
                                                   bio: bio)
-        
     }
     //MARK:-////Store Module/////////////////////////
 

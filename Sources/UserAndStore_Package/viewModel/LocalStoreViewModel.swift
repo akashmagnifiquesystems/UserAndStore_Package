@@ -163,7 +163,7 @@ public class LocalStoreViewModel {
     }
     
     
-    func insertPersonalDetail(id:String, firstname:String, lastname:String, avtarname:String, email:String, bio:String)
+    public func insertPersonalDetail(id:String, firstname:String, lastname:String, avtarname:String, email:String, bio:String)
     {
         let persons = readPersonalDetail()
         for p in persons
