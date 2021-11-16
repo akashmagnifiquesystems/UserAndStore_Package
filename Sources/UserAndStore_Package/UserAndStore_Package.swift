@@ -18,7 +18,7 @@ public struct UserAndStore_Package {
     }
     
     //MARK:- Insert profile data
-    public func insertUSerDataToLocalStorage(id:String, firstname:String, lastname:String, avtarname:String, email:String, bio:String)
+    public func insertUserDataToLocalStorage(id:String, firstname:String, lastname:String, avtarname:String, email:String, bio:String)
     {
         LocalStoreViewModel.shared.insertPersonalDetail(id: id,
                                                   firstname: firstname,
