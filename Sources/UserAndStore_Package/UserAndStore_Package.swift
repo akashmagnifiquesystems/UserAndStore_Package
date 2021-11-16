@@ -83,4 +83,14 @@ public struct UserAndStore_Package {
     {
         LocalStoreViewModel.shared.insertStoreDetails(id: id, storeName: storeName, storeYourRole: storeYourRole, storeTxtId: storeTxtId, storeAddressLine1: storeAddressLine1, storeAddressLine2: storeAddressLine2, storeCityAddress: storeCityAddress, storeStateAddress: storeStateAddress, storeZipcodeAddress: storeZipcodeAddress, storeLicenseNumber: storeLicenseNumber)
     }
+    
+    public func getStoreInfo(completion : @escaping (String, String, String, String, String, String, String, String, String, String) -> Void)
+    {
+        let storeDetails = LocalStoreViewModel.shared.readStoreDetails()
+        for s in storeDetails
+        {
+            completion(s.autoID, s.storeName, s.storeYourRole, s.storeTxtId, s.storeAddressLine1, s.storeAddressLine2, s.storeCityAddress, s.storeStateAddress, s.storeZipcodeAddress, s.storeLicenseNumber)
+            break
+        }
+    }
 }
