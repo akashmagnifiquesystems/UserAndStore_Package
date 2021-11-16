@@ -128,7 +128,7 @@ public struct UserAndStore_Package {
     }
     
     //MARK:- Delete Product to Local storage
-    public func deleteProductToLocalStorage(id : String)
+    public func deleteProductFromLocalStorage(id : String)
     {
         LocalStoreViewModel.shared.deleteDetails(queryStatement: "DELETE FROM inventorytable WHERE id = ?;", id: id)
     }
