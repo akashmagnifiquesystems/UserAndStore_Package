@@ -12,10 +12,13 @@ import FirebaseStorage
 import UIKit
 
 public class FireStoreViewModel {
+    
+    static let shared = FireStoreViewModel()
+    
     let id = UUID()
     let db = Firestore.firestore()
     
-    public var userDefaults = UserDefaultsConstants()
+    public var userDefaults = UserDefaultsStandard()
     public var phoneNumber : String?
     
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
@@ -24,19 +27,19 @@ public class FireStoreViewModel {
         
     }
     
-    public func storeNewUserDataFirestore() {
+    public func storeNewUserDataFirestore(fcmToken: String) {
         var ref: DocumentReference? = nil
         ref = self.db.collection("user").addDocument(data: [
             "app_version": appVersion ?? "",
             "avatar_image_url": "",
             "avatar_name": "",
             "bio": "",
-            "device_details": self.modelIdentifier(),
+            "device_details": Utility.shared.modelIdentifier(),
             "device_type": "iphone",
             "email": "",
             "first_name": "",
             "last_name": "",
-//            "notification_token": AppDelegate.shared.fcmPushToken ?? "",
+            "notification_token": fcmToken,
             "phone_no": phoneNumber ?? "",
             
         ]) { err in
@@ -44,17 +47,11 @@ public class FireStoreViewModel {
                 print("Error adding document: \(err)")
             } else {
                 print("Document added with ID: \(ref!.documentID)")
-                self.userDefaults.saveToUserDefault(value: ref!.documentID, Key: firestoreUniqueID)
+                self.userDefaults.saveToDefaults(value: ref!.documentID, Key: firestoreUniqueID)
             }
         }
     }
     
-    public func modelIdentifier() -> String {
-        if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] { return simulatorModelIdentifier }
-        var sysinfo = utsname()
-        uname(&sysinfo) // ignore return value
-        return String(bytes: Data(bytes: &sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
-    }
     
     public func uploadProfilePic(image: UIImage, name: String, filePath: String) {
         guard let imageData: Data = image.jpegData(compressionQuality: 0.1) else {
@@ -74,7 +71,7 @@ public class FireStoreViewModel {
             
             storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
                 print(url?.absoluteString ?? "") // <- Download URL
-                self.userDefaults.saveToUserDefault(value: url!.absoluteString, Key: profilePicURL)
+                self.userDefaults.saveToDefaults(value: url!.absoluteString, Key: profilePicURL)
                 NotificationCenter.default.post(name: NSNotification.profileUpdate,
                                                 object: nil, userInfo: nil)
             })
