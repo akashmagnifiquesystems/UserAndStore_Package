@@ -51,7 +51,6 @@ public class UserSetupViewModel {
         }
     }
     
-    
     func uploadProfilePic(image: UIImage, name: String, filePath: String) {
         guard let imageData: Data = image.jpegData(compressionQuality: 0.1) else {
             return

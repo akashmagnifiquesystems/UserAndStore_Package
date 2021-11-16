@@ -4,7 +4,7 @@ public struct UserAndStore_Package {
 
     public init() {
     }
-    
+    //MARK:-////User Module/////////////////////////
     //MARK:- Create user in firebase and store data to firestore
     public func createUserWithDataStore(fcmPushToken : String, phoneNumber: String)
     {
@@ -16,4 +16,7 @@ public struct UserAndStore_Package {
     {
         UserSetupViewModel.shared.uploadProfilePic(image: image, name: imageName, filePath: filePath)
     }
+    
+    //MARK:-////Store Module/////////////////////////
+
 }
