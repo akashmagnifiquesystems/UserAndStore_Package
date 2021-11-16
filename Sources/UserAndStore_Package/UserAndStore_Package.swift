@@ -52,6 +52,16 @@ public struct UserAndStore_Package {
         }
     }
     
+    public func getAddressInfo(completion : @escaping (String, String, String, String, String, String, String, String) -> Void)
+    {
+        let address = LocalStoreViewModel.shared.readAddress()
+        for a in address
+        {
+            completion(a.firstname, a.lastname, a.addressLine1, a.addressLine2, a.city, a.state, a.zipcode, a.country)
+            break
+        }
+    }
+
     
     //MARK:-////Store Module/////////////////////////
 
