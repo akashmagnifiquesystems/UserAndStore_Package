@@ -101,7 +101,7 @@ public class InventoryDetails
     public var productImage3 : String = ""
     public var productImage4 : String = ""
     
-    init(autoID: String, id:String, productName:String, productCategory:String, productQTY:String, productCost:String, productDesc:String, productInfo:String ,productImage1:String, productImage2:String, productImage3:String, productImage4:String)
+    public init(autoID: String, id:String, productName:String, productCategory:String, productQTY:String, productCost:String, productDesc:String, productInfo:String ,productImage1:String, productImage2:String, productImage3:String, productImage4:String)
     {
         self.autoID = autoID
         self.id = id

@@ -154,11 +154,6 @@ public struct UserAndStore_Package {
             }
         }
         completion(productListArray)
-//        for a in address
-//        {
-//            completion(a.firstname, a.lastname, a.addressLine1, a.addressLine2, a.city, a.state, a.zipcode, a.country)
-//            break
-//        }
     }
 
 }
