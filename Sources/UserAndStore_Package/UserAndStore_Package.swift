@@ -132,4 +132,33 @@ public struct UserAndStore_Package {
     {
         LocalStoreViewModel.shared.deleteDetails(queryStatement: "DELETE FROM inventorytable WHERE id = ?;", id: id)
     }
+    
+    public func getInventoryData(searchText: String, completion : @escaping ([InventoryDetails]) -> Void)
+    {
+        var productListArray : [InventoryDetails] = []
+
+        let prodList = LocalStoreViewModel.shared.readInventory()
+        if searchText.count > 0
+        {
+            for p in prodList
+            {
+                if p.productName.contains(searchText)
+                {
+                    productListArray.append(p)
+                }
+            }
+        }else{
+            for p in prodList
+            {
+                productListArray.append(p)
+            }
+        }
+        completion(productListArray)
+//        for a in address
+//        {
+//            completion(a.firstname, a.lastname, a.addressLine1, a.addressLine2, a.city, a.state, a.zipcode, a.country)
+//            break
+//        }
+    }
+
 }
