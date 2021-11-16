@@ -19,7 +19,6 @@ public class FireStoreViewModel {
     let db = Firestore.firestore()
     
     public var userDefaults = UserDefaultsStandard()
-    public var phoneNumber : String?
     
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     
@@ -27,7 +26,7 @@ public class FireStoreViewModel {
         
     }
     
-    func storeNewUserDataFirestore(fcmToken: String) {
+    func storeNewUserDataFirestore(fcmToken: String, phoneNumber: String) {
         var ref: DocumentReference? = nil
         ref = self.db.collection("user").addDocument(data: [
             "app_version": appVersion ?? "",
@@ -40,7 +39,7 @@ public class FireStoreViewModel {
             "first_name": "",
             "last_name": "",
             "notification_token": fcmToken,
-            "phone_no": phoneNumber ?? "",
+            "phone_no": phoneNumber,
             
         ]) { err in
             if let err = err {
