@@ -1,6 +1,6 @@
 import UIKit
 
-struct UserAndStore_Package {
+public struct UserAndStore_Package {
 
     public init() {
     }
