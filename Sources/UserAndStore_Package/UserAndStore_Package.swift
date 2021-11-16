@@ -93,4 +93,38 @@ public struct UserAndStore_Package {
             break
         }
     }
+    
+    //MARK:- Add Product to Local storage
+    public func addProductToLocalStorage(id:String, productName:String, productCategory:String, productQTY:String, productCost:String, productDesc:String, productInfo:String ,productImage1:String, productImage2:String, productImage3:String, productImage4:String)
+    {
+        LocalStoreViewModel.shared.insertInventory(id: id,
+                                                   productName: productName,
+                                                   productCategory: productCategory,
+                                                   productQTY: productQTY,
+                                                   productCost: productCost,
+                                                   productDesc: productDesc,
+                                                   productInfo: productInfo,
+                                                   productImage1: productImage1,
+                                                   productImage2: productImage2,
+                                                   productImage3: productImage3,
+                                                   productImage4: productImage4)
+    }
+    
+    //MARK:- Update Product to Local storage
+    public func updateProductToLocalStorage(autoId:String, id:String, productName:String, productCategory:String, productQTY:String, productCost:String, productDesc:String, productInfo:String ,productImage1:String, productImage2:String, productImage3:String, productImage4:String)
+    {
+        LocalStoreViewModel.shared.updateProduct(autoId: autoId,
+                                                 id: id,
+                                                 productName: productName,
+                                                 productCategory: productCategory,
+                                                 productQTY: productQTY,
+                                                 productCost: productCost,
+                                                 productDesc: productDesc,
+                                                 productInfo: productInfo,
+                                                 productImage1: productImage1,
+                                                 productImage2: productImage2,
+                                                 productImage3: productImage3,
+                                                 productImage4: productImage4)
+    }
+    
 }
