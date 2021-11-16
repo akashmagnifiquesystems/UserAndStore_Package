@@ -70,6 +70,7 @@ public struct UserAndStore_Package {
     {
         KRProgressHUD.show()
         ServerCallModel.shared.postUpdateUserData(params: parameters, apiname: APIName) { responseObject in
+            KRProgressHUD.dismiss()
             completion(responseObject)
         }
     }
