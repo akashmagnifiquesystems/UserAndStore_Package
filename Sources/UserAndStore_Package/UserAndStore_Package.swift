@@ -46,6 +46,7 @@ public struct UserAndStore_Package {
                                            country: country)
     }
     
+    //MARK:- Get User Personal Info
     public func getPersonalInfo(completion : @escaping (String, String, String, String, String) -> Void)
     {
         let persons = LocalStoreViewModel.shared.readPersonalDetail()
@@ -56,6 +57,7 @@ public struct UserAndStore_Package {
         }
     }
     
+    //MARK:- Get User Address Info
     public func getAddressInfo(completion : @escaping (String, String, String, String, String, String, String, String) -> Void)
     {
         let address = LocalStoreViewModel.shared.readAddress()
@@ -84,6 +86,7 @@ public struct UserAndStore_Package {
         LocalStoreViewModel.shared.insertStoreDetails(id: id, storeName: storeName, storeYourRole: storeYourRole, storeTxtId: storeTxtId, storeAddressLine1: storeAddressLine1, storeAddressLine2: storeAddressLine2, storeCityAddress: storeCityAddress, storeStateAddress: storeStateAddress, storeZipcodeAddress: storeZipcodeAddress, storeLicenseNumber: storeLicenseNumber)
     }
     
+    //MARK:- Get Store details
     public func getStoreInfo(completion : @escaping (String, String, String, String, String, String, String, String, String, String) -> Void)
     {
         let storeDetails = LocalStoreViewModel.shared.readStoreDetails()
@@ -133,6 +136,7 @@ public struct UserAndStore_Package {
         LocalStoreViewModel.shared.deleteDetails(queryStatement: "DELETE FROM inventorytable WHERE id = ?;", id: id)
     }
     
+    //MARK:- Insert Store details
     public func getInventoryData(searchText: String, completion : @escaping ([InventoryDetails]) -> Void)
     {
         var productListArray : [InventoryDetails] = []
@@ -156,6 +160,7 @@ public struct UserAndStore_Package {
         completion(productListArray)
     }
 
+    //MARK:- Get Product details
     public func getSingleProd(id: String, completion : @escaping (String, String, Int, Int, String, String, String, String, String, String) -> Void)
     {
         let prodDetails = LocalStoreViewModel.shared.readSingleProductInventory(id: id)
@@ -166,6 +171,7 @@ public struct UserAndStore_Package {
         }
     }
     
+    //MARK:- Update Product Quantity
     public func updateProdQTY(autoId : String, QTY: String)
     {
         LocalStoreViewModel.shared.updateProduct(autoId: autoId,
