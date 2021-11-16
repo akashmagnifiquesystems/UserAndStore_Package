@@ -23,6 +23,8 @@ let package = Package(
             .upToNextMajor(from: "8.7.0")
           ),
         .package(url: "https://github.com/sindresorhus/Defaults.git", from: "5.0.0"),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.4.3"),
+        .package(url: "https://github.com/krimpedance/KRProgressHUD.git", from: "3.4.7")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -34,7 +36,7 @@ let package = Package(
                 .product(name: "FirebaseDatabase", package: "Firebase"),
                 .product(name: "FirebaseFirestore", package: "Firebase"),
                 .product(name: "FirebaseStorage", package: "Firebase"),
-                "Defaults",
+                "Defaults","Alamofire","KRProgressHUD",
             ]),
         .testTarget(
             name: "UserAndStore_PackageTests",

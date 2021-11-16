@@ -1,4 +1,7 @@
 import UIKit
+import KRProgressHUD
+import Foundation
+import Alamofire
 
 public struct UserAndStore_Package {
 
@@ -62,6 +65,14 @@ public struct UserAndStore_Package {
         }
     }
 
+    //MARK:- Update user personal details
+    public func updateUserPersonalInfoOnServer(parameters: Parameters, APIName: String, completion: @escaping (NSDictionary) -> Void)
+    {
+        KRProgressHUD.show()
+        ServerCallModel.shared.postUpdateUserData(params: parameters, apiname: APIName) { responseObject in
+            completion(responseObject)
+        }
+    }
     
     //MARK:-////Store Module/////////////////////////
 
