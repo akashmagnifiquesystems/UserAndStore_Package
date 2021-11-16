@@ -133,7 +133,7 @@ public class LocalStoreViewModel {
     public let dbPath: String = "cascadeDB.sqlite"
     public var db:OpaquePointer?
     
-    func openDatabase() -> OpaquePointer?
+    public func openDatabase() -> OpaquePointer?
     {
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(dbPath)
@@ -148,7 +148,7 @@ public class LocalStoreViewModel {
         }
     }
     
-    func createPersonalDetailTable() {
+    public func createPersonalDetailTable() {
         let createTableString = "create table if not exists person (id INTEGER PRIMARY KEY AUTOINCREMENT, uniqueID TEXT, first_name TEXT, last_name TEXT, avtar_name TEXT, email TEXT, bio TEXT)"
         var createTableStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
@@ -194,12 +194,12 @@ public class LocalStoreViewModel {
         sqlite3_finalize(insertStatement)
     }
     
-    func readPersonalDetail() -> [Person] {
+    public func readPersonalDetail() -> [Person] {
         let queryStatementString = "SELECT * FROM person WHERE uniqueID = ?;"
         var queryStatement: OpaquePointer? = nil
         var psns : [Person] = []
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
-            sqlite3_bind_text(queryStatement, 1, (UserDefaultsConstants.shared.fetchFromUserDefault(Key: firestoreUniqueID) as! String), -1, nil)
+            sqlite3_bind_text(queryStatement, 1, (UserDefaultsStandard.shared.fetchFromDefaults(Key: firestoreUniqueID) as! String), -1, nil)
             
             while sqlite3_step(queryStatement) == SQLITE_ROW {
                 let id = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
@@ -218,7 +218,7 @@ public class LocalStoreViewModel {
         return psns
     }
     
-    func createTableforAddress() {
+    public func createTableforAddress() {
         let createTableString = "create table if not exists useraddress (id INTEGER PRIMARY KEY AUTOINCREMENT, uniqueID TEXT, first_name TEXT, last_name TEXT, addressline1 TEXT, addressline2 TEXT, city TEXT, state TEXT, zipcode TEXT, country TEXT)"
         var createTableStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
@@ -236,7 +236,7 @@ public class LocalStoreViewModel {
     }
     
     
-    func insertAddress(id:String, firstname:String, lastname:String, addressLine1:String, addressLine2:String, city:String, state:String, zipcode:String, country:String)
+    public func insertAddress(id:String, firstname:String, lastname:String, addressLine1:String, addressLine2:String, city:String, state:String, zipcode:String, country:String)
     {
         let persons = readAddress()
         for p in persons
@@ -270,12 +270,12 @@ public class LocalStoreViewModel {
         sqlite3_finalize(insertStatement)
     }
     
-    func readAddress() -> [PersonAddress] {
+    public func readAddress() -> [PersonAddress] {
         let queryStatementString = "SELECT * FROM useraddress WHERE uniqueID = ?;"
         var queryStatement: OpaquePointer? = nil
         var psns : [PersonAddress] = []
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
-            sqlite3_bind_text(queryStatement, 1, (UserDefaultsConstants.shared.fetchFromUserDefault(Key: firestoreUniqueID) as! String), -1, nil)
+            sqlite3_bind_text(queryStatement, 1, (UserDefaultsStandard.shared.fetchFromDefaults(Key: firestoreUniqueID) as! String), -1, nil)
             
             while sqlite3_step(queryStatement) == SQLITE_ROW {
                 let id = String(describing: String(cString: sqlite3_column_text(queryStatement, 1)))
@@ -299,7 +299,7 @@ public class LocalStoreViewModel {
         return psns
     }
    
-    func createTableforStoreDetails() {
+    public func createTableforStoreDetails() {
         let createTableString = "create table if not exists storedetailstable (id INTEGER PRIMARY KEY AUTOINCREMENT, uniqueID TEXT, store_name TEXT, store_role TEXT, store_txtid TEXT, store_address1 TEXT, store_address2 TEXT, store_city TEXT, store_state TEXT, store_zipcode TEXT, store_licensenumber TEXT)"
         var createTableStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
@@ -317,7 +317,7 @@ public class LocalStoreViewModel {
     }
     
     
-    func insertStoreDetails(id:String, storeName:String, storeYourRole:String, storeTxtId:String, storeAddressLine1:String, storeAddressLine2:String, storeCityAddress:String ,storeStateAddress:String, storeZipcodeAddress:String, storeLicenseNumber:String)
+    public func insertStoreDetails(id:String, storeName:String, storeYourRole:String, storeTxtId:String, storeAddressLine1:String, storeAddressLine2:String, storeCityAddress:String ,storeStateAddress:String, storeZipcodeAddress:String, storeLicenseNumber:String)
     {
         let persons = readStoreDetails()
         for p in persons
@@ -352,12 +352,12 @@ public class LocalStoreViewModel {
         sqlite3_finalize(insertStatement)
     }
     
-    func readStoreDetails() -> [StoreDetails] {
+    public func readStoreDetails() -> [StoreDetails] {
         let queryStatementString = "SELECT * FROM storedetailstable WHERE uniqueID = ?;"
         var queryStatement: OpaquePointer? = nil
         var psns : [StoreDetails] = []
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
-            sqlite3_bind_text(queryStatement, 1, (UserDefaultsConstants.shared.fetchFromUserDefault(Key: firestoreUniqueID) as! String), -1, nil)
+            sqlite3_bind_text(queryStatement, 1, (UserDefaultsStandard.shared.fetchFromDefaults(Key: firestoreUniqueID) as! String), -1, nil)
             
             while sqlite3_step(queryStatement) == SQLITE_ROW {
                 let autoID = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
@@ -381,7 +381,7 @@ public class LocalStoreViewModel {
         return psns
     }
     
-    func createTableforInventory() {
+    public func createTableforInventory() {
         let createTableString = "create table if not exists inventorytable (id INTEGER PRIMARY KEY AUTOINCREMENT, uniqueID TEXT, product_name TEXT, product_category TEXT, product_qty TEXT, product_cost TEXT, product_desc TEXT, product_info TEXT, product_image1 TEXT, product_image2 TEXT, product_image3 TEXT, product_image4 TEXT)"
         var createTableStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, createTableString, -1, &createTableStatement, nil) == SQLITE_OK
@@ -399,7 +399,7 @@ public class LocalStoreViewModel {
     }
     
     
-    func insertInventory(id:String, productName:String, productCategory:String, productQTY:String, productCost:String, productDesc:String, productInfo:String ,productImage1:String, productImage2:String, productImage3:String, productImage4:String)
+    public func insertInventory(id:String, productName:String, productCategory:String, productQTY:String, productCost:String, productDesc:String, productInfo:String ,productImage1:String, productImage2:String, productImage3:String, productImage4:String)
     {
         let insertStatementString = "INSERT INTO inventorytable (uniqueID, product_name, product_category, product_qty, product_cost, product_desc, product_info, product_image1, product_image2, product_image3, product_image4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
         var insertStatement: OpaquePointer? = nil
@@ -427,12 +427,12 @@ public class LocalStoreViewModel {
         sqlite3_finalize(insertStatement)
     }
     
-    func readInventory() -> [InventoryDetails] {
+    public func readInventory() -> [InventoryDetails] {
         let queryStatementString = "SELECT * FROM inventorytable WHERE uniqueID = ?;"
         var queryStatement: OpaquePointer? = nil
         var psns : [InventoryDetails] = []
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
-            sqlite3_bind_text(queryStatement, 1, (UserDefaultsConstants.shared.fetchFromUserDefault(Key: firestoreUniqueID) as! String), -1, nil)
+            sqlite3_bind_text(queryStatement, 1, (UserDefaultsStandard.shared.fetchFromDefaults(Key: firestoreUniqueID) as! String), -1, nil)
             
             while sqlite3_step(queryStatement) == SQLITE_ROW {
                 let autoID = String(describing: String(cString: sqlite3_column_text(queryStatement, 0)))
@@ -457,7 +457,7 @@ public class LocalStoreViewModel {
         return psns
     }
     
-    func readSingleProductInventory(id:String) -> [InventoryDetails] {
+    public func readSingleProductInventory(id:String) -> [InventoryDetails] {
         let queryStatementString = "SELECT * FROM inventorytable WHERE id = ?;"
         var queryStatement: OpaquePointer? = nil
         var psns : [InventoryDetails] = []
@@ -487,7 +487,7 @@ public class LocalStoreViewModel {
         return psns
     }
     
-    func updateProduct(autoId:String, id:String, productName:String, productCategory:String, productQTY:String, productCost:String, productDesc:String, productInfo:String ,productImage1:String, productImage2:String, productImage3:String, productImage4:String)
+    public func updateProduct(autoId:String, id:String, productName:String, productCategory:String, productQTY:String, productCost:String, productDesc:String, productInfo:String ,productImage1:String, productImage2:String, productImage3:String, productImage4:String)
     {
         
         let updateStatementString = "UPDATE inventorytable SET uniqueID = '\(id)', product_name = '\(productName)', product_category = '\(productCategory)', product_qty = '\(productQTY)', product_cost = '\(productCost)', product_desc = '\(productDesc)', product_info = '\(productInfo)', product_image1 = '\(productImage1)', product_image2 = '\(productImage2)', product_image3 = '\(productImage3)', product_image4 = '\(productImage4)'  WHERE id = '\(autoId)';"
@@ -504,7 +504,7 @@ public class LocalStoreViewModel {
         sqlite3_finalize(updateStatement)
     }
     
-    func updateProductImagesPath(autoId:String, id:String, productImage1:String, productImage2:String, productImage3:String, productImage4:String)
+    public func updateProductImagesPath(autoId:String, id:String, productImage1:String, productImage2:String, productImage3:String, productImage4:String)
     {
         let updateStatementString = "UPDATE inventorytable SET uniqueID = '\(id)', product_image1 = '\(productImage1)', product_image2 = '\(productImage2)', product_image3 = '\(productImage3)', product_image4 = '\(productImage4)'  WHERE id = '\(autoId)';"
         var updateStatement: OpaquePointer? = nil
@@ -520,7 +520,7 @@ public class LocalStoreViewModel {
         sqlite3_finalize(updateStatement)
     }
     
-    func updateProduct(autoId:String, id:String, productQTY:String)
+    public func updateProduct(autoId:String, id:String, productQTY:String)
     {
         
         let updateStatementString = "UPDATE inventorytable SET uniqueID = '\(id)', product_qty = '\(productQTY)'  WHERE id = '\(autoId)';"
@@ -538,7 +538,7 @@ public class LocalStoreViewModel {
     }
     
     //MARK:- Delete call
-    func deleteDetails(queryStatement : String, id : String) {
+    public func deleteDetails(queryStatement : String, id : String) {
         let deleteStatementStirng = queryStatement
         var deleteStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, deleteStatementStirng, -1, &deleteStatement, nil) == SQLITE_OK {
