@@ -156,4 +156,13 @@ public struct UserAndStore_Package {
         completion(productListArray)
     }
 
+    public func getSingleProd(id: String, completion : @escaping (String, String, Int, Int, String, String, String, String, String, String) -> Void)
+    {
+        let prodDetails = LocalStoreViewModel.shared.readSingleProductInventory(id: id)
+        for p in prodDetails
+        {
+            completion(p.productName, p.productCategory, Int(p.productQTY)!, Int(p.productCost)!, p.productDesc, p.productInfo,p.productImage1, p.productImage2, p.productImage3, p.productImage4)
+            break
+        }
+    }
 }
