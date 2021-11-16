@@ -14,7 +14,7 @@ import UIKit
 
 public class UserCreationFireStore {
     
-    static let shared = FireStoreViewModel()
+    static let shared = UserCreationFireStore()
     
     let id = UUID()
     let db = Firestore.firestore()
