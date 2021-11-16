@@ -23,11 +23,11 @@ public class FireStoreViewModel {
     
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     
-    public init() {
+    init() {
         
     }
     
-    public func storeNewUserDataFirestore(fcmToken: String) {
+    func storeNewUserDataFirestore(fcmToken: String) {
         var ref: DocumentReference? = nil
         ref = self.db.collection("user").addDocument(data: [
             "app_version": appVersion ?? "",
@@ -53,7 +53,7 @@ public class FireStoreViewModel {
     }
     
     
-    public func uploadProfilePic(image: UIImage, name: String, filePath: String) {
+    func uploadProfilePic(image: UIImage, name: String, filePath: String) {
         guard let imageData: Data = image.jpegData(compressionQuality: 0.1) else {
             return
         }
