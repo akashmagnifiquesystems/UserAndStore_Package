@@ -41,6 +41,18 @@ public struct UserAndStore_Package {
                                            zipcode: zipcode,
                                            country: country)
     }
+    
+    public func getPersonalInfo(completion : @escaping (String, String, String, String, String) -> Void)
+    {
+        let persons = LocalStoreViewModel.shared.readPersonalDetail()
+        for p in persons
+        {
+            completion(p.firstname, p.lastname, p.avtarname, p.email, p.bio)
+            break
+        }
+    }
+    
+    
     //MARK:-////Store Module/////////////////////////
 
 }
